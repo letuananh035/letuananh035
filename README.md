@@ -1,3 +1,2 @@
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=letuananh035)](https://github.com/anuraghazra/github-readme-stats)
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![letuananh035's github stats](https://github-readme-stats.vercel.app/api?username=letuananh035&show_icons=true&line_height=21&show_icons=true&theme=vue&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=letuananh035&show_icons=true&layout=compact&theme=vue&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
