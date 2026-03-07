@@ -3,13 +3,22 @@ name: Update README cards
 on:
   schedule:
     - cron: "0 3 * * *"
+  push: # Thêm cái này để test ngay khi bạn commit file yaml này
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # QUAN TRỌNG: Cấp quyền ghi để Action có thể commit/push vào repo
+    permissions:
+      contents: write 
+      
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Checkout với toàn bộ lịch sử để push không bị lỗi
+          fetch-depth: 0 
 
       - name: Generate stats card
         uses: readme-tools/github-readme-stats-action@v1
@@ -23,6 +32,9 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
+          # Tạo thư mục profile nếu chưa có để tránh lỗi 'path not found'
+          mkdir -p profile
           git add profile/*.svg
           git commit -m "Update README cards" || exit 0
-          git push
+          # Chỉ định rõ push lên branch master
+          git push origin master
