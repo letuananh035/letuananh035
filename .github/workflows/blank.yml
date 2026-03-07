@@ -2,16 +2,16 @@ name: Update README cards
 
 on:
   schedule:
-    - cron: "0 3 * * *" # Runs at 03:00 UTC every day
+    - cron: "0 3 * * *" # Runs daily at 03:00 UTC
   push:
     branches: [ "master" ]
-  workflow_dispatch: # Allows manual trigger
+  workflow_dispatch: # Allows manual triggering from the Actions tab
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Required to push the SVG files back to the repo
+      contents: write # Essential for pushing the generated SVG files
     
     steps:
       - name: Checkout repository
@@ -29,16 +29,16 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 2: Generate Top Languages Card
-      # This will highlight your expertise in Kotlin, Java, etc.
-      - name: Generate languages card
+      # Fixed: Changed 'languages' to 'top-langs' to match action support
+      - name: Generate top languages card
         uses: readme-tools/github-readme-stats-action@v1
         with:
-          card: languages
+          card: top-langs
           options: username=${{ github.repository_owner }}&layout=compact&theme=radical
           path: profile/languages.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 3: Commit and Push all generated cards
+      # Step 3: Commit and Push changes
       - name: Commit and Push cards
         run: |
           git config user.name "github-actions"
