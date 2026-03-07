@@ -1,13 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch: # This allows you to run it manually from the Actions tab
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to save the generated stats
     steps:
       - uses: actions/checkout@v4
 
       - name: GitHub Readme Stats Action
         uses: stats-organization/github-readme-stats-action@v1.1.0
         with:
-          # Specify which card you want: "stats", "languages", or "repo"
-          card: "stats" 
-          # You usually need to provide your GitHub Token to fetch data
+          card: "stats"
           gh_token: ${{ secrets.GITHUB_TOKEN }}
