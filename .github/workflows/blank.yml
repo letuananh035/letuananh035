@@ -27,5 +27,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: GitHub Readme Stats Action
-      uses: stats-organization/github-readme-stats-action@v1.1.0
+        uses: stats-organization/github-readme-stats-action@v1.1.0
 
