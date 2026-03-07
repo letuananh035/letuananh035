@@ -19,5 +19,5 @@ jobs:
         uses: stats-organization/github-readme-stats-action@v1.1.0
         with:
           card: "stats"
-          # Changed from gh_token to token based on your error log
           token: ${{ secrets.GITHUB_TOKEN }}
+          path: "github-readme-stats.svg" # This forces it to the root
