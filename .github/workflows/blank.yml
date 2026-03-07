@@ -1,23 +1,37 @@
-name: CI
+name: GitHub Readme Stats
 
 on:
+  schedule:
+    # Chạy tự động mỗi 24 giờ
+    - cron: '0 0 * * *'
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-  workflow_dispatch:
+  workflow_dispatch: # Cho phép nhấn nút chạy thủ công
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Grants permission to push the generated SVG back to your repo
+      contents: write # Quan trọng: Cho phép Action ghi file vào repo
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: GitHub Readme Stats Action
+      - name: Generate GitHub Readme Stats
         uses: stats-organization/github-readme-stats-action@v1.1.0
         with:
-          card: "stats"
           token: ${{ secrets.GITHUB_TOKEN }}
-          path: "github-readme-stats.svg" # This forces it to the root
+          card: "stats"
+          # Tùy chọn: Lưu file trực tiếp ở thư mục gốc để dễ dẫn link
+          path: "github-readme-stats.svg"
+          # Tùy chọn: Chỉnh theme cho chuyên nghiệp (ví dụ: radical hoặc dark)
+          options: "theme=radical&show_icons=true"
+
+      - name: Generate Top Languages Card
+        uses: stats-organization/github-readme-stats-action@v1.1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          card: "languages"
+          path: "top-langs.svg"
+          options: "theme=radical&layout=compact"
