@@ -5,13 +5,13 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-  workflow_dispatch: # This allows you to run it manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Needed to save the generated stats
+      contents: write # Grants permission to push the generated SVG back to your repo
     steps:
       - uses: actions/checkout@v4
 
@@ -19,4 +19,5 @@ jobs:
         uses: stats-organization/github-readme-stats-action@v1.1.0
         with:
           card: "stats"
-          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          # Changed from gh_token to token based on your error log
+          token: ${{ secrets.GITHUB_TOKEN }}
