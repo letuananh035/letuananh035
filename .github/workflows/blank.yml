@@ -11,41 +11,42 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Crucial for pushing the generated SVG files back to the repo
+      contents: write # Essential for pushing the generated SVG files back to the repo
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Fetches all history for all branches and tags
 
-      # Step 1: Generate General Stats Card
+      # Step 1: Generate General Stats Card (Includes Private Contributions)
       - name: Generate stats card
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: stats
-          # Keeps theme radical and shows icons. Default height is ~195px.
-          options: username=${{ github.repository_owner }}&show_icons=true&theme=radical
+          # Added count_private=true to include your private work history
+          # Using theme=radical and showing icons for a modern look
+          options: username=${{ github.repository_owner }}&show_icons=true&theme=radical&count_private=true
           path: profile/stats.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 2: Generate Top Languages Card (FIXED SIZE)
+      # Step 2: Generate Top Languages Card (Includes Private Repos)
       - name: Generate top languages card
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
-          # FIX: Added '&height=195' to match the General Stats card height.
-          options: username=${{ github.repository_owner }}&layout=compact&theme=radical&height=195
+          # Default layout (non-compact) works better for vertical stacking
+          # count_private=true ensures languages from your private Android/Game projects are counted
+          options: username=${{ github.repository_owner }}&theme=radical&count_private=true
           path: profile/languages.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 3: Commit and Push all generated cards
+      # Step 3: Commit and Push all generated cards to the master branch
       - name: Commit and Push cards
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           mkdir -p profile
           git add profile/*.svg
-          git commit -m "Update README cards: fixed sizes and radical theme" || exit 0
-          # Since your main branch is master
+          git commit -m "Update README cards: inclusive of private repos & vertical layout" || exit 0
           git push origin master
