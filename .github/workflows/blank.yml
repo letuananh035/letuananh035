@@ -28,7 +28,7 @@ jobs:
           # Using theme=radical and showing icons for a modern look
           options: username=${{ github.repository_owner }}&show_icons=true&theme=radical&count_private=true
           path: profile/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.MY_PERSONAL_TOKEN }}
 
       # Step 2: Generate Top Languages Card (Includes Private Repos)
       - name: Generate top languages card
@@ -39,7 +39,7 @@ jobs:
           # count_private=true ensures languages from your private Android/Game projects are counted
           options: username=${{ github.repository_owner }}&theme=radical&count_private=true
           path: profile/languages.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.MY_PERSONAL_TOKEN }}
 
       # Step 3: Commit and Push all generated cards to the master branch
       - name: Commit and Push cards
