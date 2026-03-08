@@ -1,7 +1,7 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/letuananh035/letuananh035/master/profile/stats.svg" alt="GitHub Stats" />
+  <img src="https://raw.githubusercontent.com/letuananh035/letuananh035/master/profile/stats.svg" alt="Lê Tuấn Anh's GitHub Stats" />
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/letuananh035/letuananh035/master/profile/languages.svg" alt="Top Languages" />
+  <img src="https://raw.githubusercontent.com/letuananh035/letuananh035/master/profile/languages.svg" alt="Most Used Languages" />
 </p>
